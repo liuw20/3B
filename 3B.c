@@ -15,12 +15,18 @@ int find_gcd(int n1,int n2)
     {
         k=n1;
     }
-    for (int  i = 0; i < k; i++)
+    for (int  i = 1; i <=k; i++)
     {
         if(n1%i==0&&n2%i==0)
             g=i;
     }
     return g;    
+}
+float xiaoshu(struct fraction f)
+{
+    float t;
+    t=(float)f.numerator/f.denominator;
+    return t;
 }
 struct fraction reduce_fraction(struct fraction f)
 {
@@ -75,16 +81,16 @@ void main()
 {
     struct fraction f1,f2,f;
     printf("请选择你要实现的功能：\n");
-    printf("    1.加法\n    2.减法\n    3.乘法\n    4.除法\n    5.化简\n");
+    printf("    1.加法\n    2.减法\n    3.乘法\n    4.除法\n    5.化简\n    6.转化为浮点数");
     int k;
     scanf("%d",&k);
-    if (k!=5)
+    struct fraction result;
+    if (k!=5&&k!=6)
     {
     printf("请输入分数1（f1），格式为分子/分母，请按照格式输入:\n");
     scanf("%d/%d",&f1.numerator,&f1.denominator);
     printf("请输入分数2（f2），格式为分子/分母，请按照格式输入:\n");
     scanf("%d/%d",&f2.numerator,&f2.denominator);
-    struct fraction result;
     switch(k)
     {
     case 1:
@@ -111,22 +117,27 @@ void main()
         printf("结果为%d/%d",result.numerator,result.denominator);
         break;
     } 
-    // }
-    // else
-    // {
-    //     printf("请输入分数f，格式为分子/分母，请按照格式输入：\n");
-    //     scanf("%d/%d",&f.numerator,&f.denominator);
-    // }
-    
-    
-//     case 5:
-//     {
-//        result=reduce_fraction(f);
-//         printf("结果为%d/%d",result.numerator,result.denominator);
-//         break;
-//     }
+   }
 
-//     default:
-//         break;
-//     }
-// }
+ }
+ else
+ {
+     if (k==5)
+     {
+     printf("请输入分数，格式为分子/分母，请按照格式输入:\n");
+    scanf("%d/%d",&f.numerator,&f.denominator);
+    result=reduce_fraction(f);
+    printf("化简结果为%d/%d：\n",result.numerator,result.denominator);
+ }
+ if (k==6)
+ {
+       printf("请输入分数，格式为分子/分母，请按照格式输入:\n");
+        scanf("%d/%d",&f.numerator,&f.denominator);
+       printf("结果为%f：\n",xiaoshu(f));
+ }
+ 
+     }
+     
+   
+ 
+}
