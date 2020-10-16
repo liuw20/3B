@@ -1,5 +1,5 @@
 #include <stdio.h>
-
+#include<math.h>
  typedef  struct fraction {
     int numerator;
     int denominator;
@@ -30,9 +30,21 @@ float xiaoshu(struct fraction f)
 }
 struct fraction reduce_fraction(struct fraction f)
 {
-    int gcd = find_gcd(f.numerator,f.denominator);
-    f.numerator/=gcd;
-    f.denominator/=gcd;
+    if (f.denominator<0)
+    {
+     f.denominator=-f.denominator;
+     f.numerator=-f.numerator;   
+    }
+    if (f.numerator==0)
+    {
+     f.denominator=1;   /* code */
+    }
+    else
+    {
+        int gcd=find_gcd(abs(f.numerator),abs(f.denominator));
+        f.numerator/=gcd;
+        f.denominator/=gcd;
+    }
     return f;
 }
 struct fraction add_fraction(struct fraction f1,struct fraction f2)
